@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Movie - MovieFlix</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://source.unsplash.com/featured/?movies') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            margin: 0;
+            background-color: black;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(63 0 0 / 80%);
+            padding: 10px 20px;
+            box-sizing: border-box;
+        }
+        .navbar h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            width: 110%;
+            max-width: 500px;
+            box-sizing: border-box;
+            margin: 50px auto;
+            background-color: rgb(63 0 0 / 80%);
+        }
+        h2 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="text"],
+        input[type="url"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #e50914;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #d40813;
+        }
+        .home-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .home-link a {
+            color: #e50914;
+            text-decoration: none;
+        }
+        .home-link a:hover {
+            text-decoration: underline;
+        }
+        .message {
+            text-align: center;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .message-success {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .message-error {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/adminhome"> 
+        <h1>Home</h1>
+        </a>
+        <div>
+            <a href="map-addmovie">Add Movies</a>
+            <a href="viewuser">View Users</a>
+            <a href="viewMovie">View Movie</a>
+            <!-- Add more links as needed for other admin activities -->
+        </div>
+    </div>
+    <div class="container">
+        <h2>Add Movie</h2>
+        <div th:class="'message ' + ${messageClass}" th:text="${message}"></div>
+        <form th:action="@{addmovie}" method="post">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="link">Link</label>
+            <input type="url" id="link" name="link" required>
+            
+            <label for="genre">Genre</label>
+            <select id="genre" name="genre" required>
+                <option value="">Select Genre</option>
+                <option value="Action">Action</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Drama">Drama</option>
+                <option value="Horror">Horror</option>
+                <option value="Romance">Romance</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <!-- Add more genres as needed -->
+            </select>
+            
+            <label for="cast">Cast</label>
+            <textarea id="cast" name="cast" rows="4" required></textarea>
+            
+            <label for="director">Director</label>
+            <input type="text" id="director" name="director" required>
+            
+            <label for="posterUrl">Poster URL</label>
+            <input type="url" id="posterUrl" name="posterUrl" required>
+            
+            <button type="submit">Add Movie</button>
+        </form>
+        <div class="home-link">
+            <a href="/adminhome">Back to Admin Home</a>
+        </div>
+    </div>
+</body>
+</html>

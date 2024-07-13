@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile - MovieFlix</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://source.unsplash.com/featured/?movies') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 128vh;
+            background-color: black;
+        }
+        .container {
+            background-color: rgba(63, 0, 0, 0.8);
+            padding: 40px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(63, 0, 0, 0.8);
+            padding: 10px 20px;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .navbar h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        h2 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea,
+        input[type="password"] {
+            width: calc(100% - 24px); /* Adjusted width for the toggle button */
+            padding: 8px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        .password-container {
+            position: relative;
+            margin-bottom: 10px;
+        }
+        .toggle-password {
+            position: absolute;
+            top: 35%;
+            left: 375px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 16px;
+        }
+       #save {
+            width: 100%;
+            padding: 10px;
+            background-color: #e50914;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+       
+        .home-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .home-link a {
+            color: #e50914;
+            text-decoration: none;
+        }
+        .home-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>MovieFlix</h1>
+        <div>
+            <a href="/profile">Profile</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+    <div class="container">
+        <h2>Edit Profile</h2>
+        <form th:action="@{/updateprofile}" th:object="${user}" method="post">
+            <label for="name">Name</label>
+            <input type="text" id="name" th:field="*{name}" required>
+            
+            <label for="email">Email</label>
+            <input type="email" id="email" th:field="*{email}" required readonly>
+            
+            <label for="gender">Gender</label>
+            <input type="text" id="gender" th:field="*{gender}" required>
+            
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" th:field="*{phone}" required>
+            
+            <label for="password">Password</label>
+            <div class="password-container">
+                <input type="password" id="password" th:field="*{password}" required>
+                <button type="button" class="toggle-password" onclick="togglePassword()">👁️</button>
+            </div>
+            
+            <label for="address">Address</label>
+            <textarea id="address" th:field="*{address}" rows="3" required></textarea>
+            
+            <button id="save" type="submit">Save Changes</button>
+        </form>
+        <div class="home-link">
+            <a href="/profile">Back to Profile</a>
+        </div>
+    </div>
+    
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const togglePassword = document.querySelector('.toggle-password');
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+            togglePassword.textContent = type === 'password' ? '👁️' : '🙈';
+        }
+    </script>
+</body>
+</html>

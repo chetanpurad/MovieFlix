@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieFlix Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f562aaf4-5dbb-4603-a32b-6ef6c2230136/dh0w8qv-9d8ee6b2-b41a-4681-ab9b-8a227560dc75.jpg/v1/fill/w_1280,h_720,q_75,strp/the_netflix_login_background__canada__2024___by_logofeveryt_dh0w8qv-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzIwIiwicGF0aCI6IlwvZlwvZjU2MmFhZjQtNWRiYi00NjAzLWEzMmItNmVmNmMyMjMwMTM2XC9kaDB3OHF2LTlkOGVlNmIyLWI0MWEtNDY4MS1hYjliLThhMjI3NTYwZGM3NS5qcGciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.LOYKSxIDqfPwWHR0SSJ-ugGQ6bECF0yO6Cmc0F26CQs') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: rgb(55 53 53 / 80%);
+        }
+        .container {
+            background-color: rgb(55 53 53 / 80%);
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            box-sizing: border-box;
+            margin:auto;
+            
+        }
+        h2 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #e50914;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #d40813;
+        }
+        @media (max-width: 500px) {
+            .container {
+                padding: 15px;
+                width: 100%;
+            }
+            button {
+                padding: 8px;
+                font-size: 14px;
+            }
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+           	background-color: rgb(55 53 53 / 80%);
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-sizing: border-box;
+            z-index: 1000;
+        }
+        .navbar h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        
+        footer {
+            background-color: rgb(55 53 53 / 80%);
+            padding: 20px;
+            text-align:left;
+            color: white;
+            width:100%;
+            bottom:0;
+           
+        }
+        footer .copy
+        {
+        	text-align:center;
+        }
+    </style>
+</head>
+<body>
+	<div class="navbar">
+        <h1>MovieFlix</h1>
+    </div>
+    <div class="container">
+        <h2>MovieFlix Login</h2>
+        <div th:text="${message}" style="color:red"></div>
+        <form id="loginForm" action="login" method="post">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email"  placeholder="Enter email"   required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter password"   required>
+
+            <button type="submit">Login</button>
+            <p>You Don't Have an Account</p>
+            <a href="register" style="color:white; "><b>Create Account</b></a>
+        </form>
+    </div>
+	<footer>
+    	<p>About us</p>
+    	<p>Contact us:00-9836334362</p>
+        <p class="copy">&copy; 2024 MovieFlix. All rights reserved.</p>
+    </footer>
+   
+</body>
+</html>

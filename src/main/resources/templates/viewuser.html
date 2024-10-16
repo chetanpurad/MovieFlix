@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Users - MovieFlix</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://source.unsplash.com/featured/?movies') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(63 0 0 / 80%);
+            padding: 10px 20px;
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            background-color: rgb(63 0 0 / 80%);
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            box-sizing: border-box;
+            margin: 50px auto;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+
+        table, th, td {
+            border: 1px solid white;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #e50914;
+        }
+
+        .home-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .home-link a {
+            color: #e50914;
+            text-decoration: none;
+        }
+
+        .home-link a:hover {
+            text-decoration: underline;
+        }
+
+        .delete-button {
+            background-color: #e50914;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        .delete-button:hover {
+            background-color: #d40813;
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 768px) {
+            .navbar h1 {
+                font-size: 20px;
+            }
+
+            .navbar a {
+                font-size: 14px;
+                margin: 0 10px;
+            }
+
+            .container {
+                padding: 15px;
+                margin: 20px auto;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+
+            .delete-button {
+                padding: 4px 8px;
+                font-size: 14px;
+            }
+        }
+
+        /* Media query for very small devices like phones */
+        @media (max-width: 500px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar a {
+                display: block;
+                margin: 5px 0;
+                font-size: 14px;
+            }
+
+            .navbar h1 {
+                font-size: 18px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            h2 {
+                font-size: 18px;
+            }
+
+            th, td {
+                padding: 6px;
+            }
+
+            .delete-button {
+                padding: 4px 6px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/adminhome"> 
+            <h1>Home</h1>
+        </a>
+        <div>
+            <a href="map-addmovie">Add Movies</a>
+            <a href="viewuser">View Users</a>
+            <a href="viewMovie">View Movie</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>View Users</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.gender}"></td>
+                    <td th:text="${user.phone}"></td>
+                    <td th:text="${user.address}"></td>
+                    <td>
+                        <form th:action="deleteUser" method="post">
+                            <input type="hidden" name="id" th:value="${user.id}">
+                            <button type="submit" class="delete-button">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="home-link">
+            <a href="adminhome">Home</a>
+        </div>
+    </div>
+</body>
+</html>

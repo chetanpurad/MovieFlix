@@ -111,6 +111,21 @@ public class UserController
 	    return "editprofile";
 	}
 	
+	@PostMapping("forgotpassword")
+	public String updatePasssword(@ModelAttribute User user, Model model)
+	{
+		if(userSer.userExist(user.getEmail())==false)
+			{
+				userSer.updatePassword(user);
+				return "login";
+			}
+		else
+		{
+			model.addAttribute("message", "Email id not exists ");
+			return "forgotpassword";
+		}
+		
+	}
 
 	 
 	@PostMapping("updateprofile")

@@ -26,6 +26,7 @@ public interface UserService
 	
 	public String deleteUser(int id);
 	
+	public void updatePassword(User user);
 	
 	
 

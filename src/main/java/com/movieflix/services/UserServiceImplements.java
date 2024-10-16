@@ -91,6 +91,15 @@ public class UserServiceImplements implements UserService
 		return "User Deleted";
 	}
 
+	@Override
+	public void updatePassword(User user) {
+		// TODO Auto-generated method stub
+		User userpass=userRepo.findByEmail(user.getEmail());
+		userpass.setPassword(user.getPassword());
+		userRepo.save(userpass);
+		
+	}
+
 	
 	
 	
